@@ -1,8 +1,22 @@
-print("3 хп")
-print("2 хп")
-print("1 хп")
-print("Игра проиграна (")
+import time 
+import random
 
-while True:
-	print("password -> m34k5kmo435om30394kr034k")
-	print(100/10)
+targetArray = ["х", "е", "л", "л", "о", " ", "в", "о", "р", "л", "д", "!"]
+stringArray = ["", "", "", "", "", "", "", "", "", "", "", ""]
+
+i = 0
+while i < len(targetArray):
+	if stringArray[i] != targetArray[i]:
+		stringArray[i] = chr(random.randint(0, 256))
+		
+	if stringArray[i] == targetArray[i]:
+		i += 1
+		
+	print('\r', end='')
+	z=0
+	while z < len(stringArray):
+		print(stringArray[z], end='')
+		z += 1
+		
+	time.sleep(.01)
+
