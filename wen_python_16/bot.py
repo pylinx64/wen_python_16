@@ -8,6 +8,17 @@ def text_start(message):
 	bot.send_message(message.chat.id, 'Привет! Я ретро бот с ретро картинками')
 	print(message.chat.first_name, message.text)
 	
+	
+@bot.message_handler(content_types=['text'])
+def text_bot(message):	
+	'''Принимает текстовые сообщения и отправляет ответ'''
+	if message.text == 'привет':
+		bot.send_message(message.chat.id, 'привет!')
+	elif message.text == 'как дела':
+		bot.send_message(message.chat.id, 'нормально')
+	else:
+		bot.send_message(message.chat.id, 'я не распознаю такой команды')
+	
 
 print('# start bot ...')	
 bot.polling()
