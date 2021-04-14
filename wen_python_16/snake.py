@@ -66,10 +66,27 @@ while True:
 	# обновляем экран
     screen.update()
     
+    #----------------------вы находитесь тут-----------------------
+    x_snake = snake[0].xcor()
+    y_snake = snake[0].ycor()
+    
+    # x - это левая и правая стена
+    if x_snake > 300:
+        screen.bgcolor('red')
+        break
+    elif x_snake < -300:
+        
+        break
+    elif y_snake < -300:
+        
+        break
+    elif y_snake > 300:
+        
+        break
+    #----------------------вы находитесь тут-----------------------
+    
 	# фпс
     time.sleep(0.15)
-
-
 
 # запуск 
 screen.mainloop()
