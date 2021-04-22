@@ -2,8 +2,6 @@ import time
 import turtle
 from random import randrange
 
-BREAK_FLAG = False
-
 # сохраняем экран в переменную
 screen = turtle.Screen()
 # название окошка
@@ -34,7 +32,11 @@ screen.listen()
 food = turtle.Turtle()
 food.shape('circle')
 food.penup()
+food.color('#4427AD')
 food.goto(randrange(-300, 300, 20), randrange(-300, 300, 20))
+
+# переменная-флаг
+FLAG = False
 
 while True:
 	# если расстояние от головы до еды меньше 10
@@ -73,20 +75,36 @@ while True:
     # x - это левая и правая стена
     if x_snake > 300:
         screen.bgcolor('red')
+        #turtle.write()
         break
     elif x_snake < -300:
-        
+        screen.bgcolor('red')
         break
+    # y - это верхняя и нижняя
     elif y_snake < -300:
-        
+        screen.bgcolor('red')
         break
     elif y_snake > 300:
-        
+        screen.bgcolor('red')
         break
     #----------------------вы находитесь тут-----------------------
     
+    # game over если кушает себя
+    for body in snake[1:]:
+        # берем координаты туловища
+        coordinates = body.position()
+        # проверяем расстояние от туловища до головы
+        if snake[0].distance(coordinates) < 10:
+            # если расстояние меньше 10 то меняем флажок
+            FLAG = True
+    
+    # голова коснулась туловища, game over
+    if FLAG == True:
+        screen.bgcolor('red')
+        break
+    
 	# фпс
-    time.sleep(0.15)
+    time.sleep(0.1)
 
 # запуск 
 screen.mainloop()
